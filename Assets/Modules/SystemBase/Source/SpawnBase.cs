@@ -28,6 +28,9 @@ namespace GameOfSheep.SystemBase {
 		}
 
 		public virtual T Spawn (params object[] arguments) {
+			if (m_TFactory == null)
+				return default(T);
+			
 			return (T)m_TFactory.Create (arguments);
 		}
 	}

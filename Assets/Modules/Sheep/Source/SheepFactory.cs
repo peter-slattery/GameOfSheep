@@ -20,7 +20,15 @@ namespace GameOfSheep.Sheep {
 		public override System.Object Create (params object[] arguments) {
 
 			GameObject sheep = new GameObject ("Sheep");
-			GameObject sheepVisuals = GameObject.Instantiate<GameObject> (m_Settings.FactorySettings.SheepVisualPrefab);
+
+			GameObject sheepVisuals; 
+
+			if (m_Settings != null) {
+				sheepVisuals = GameObject.Instantiate<GameObject> (m_Settings.FactorySettings.SheepVisualPrefab);
+			}else{
+				sheepVisuals = GameObject.CreatePrimitive (PrimitiveType.Cube);
+			}
+
 			sheepVisuals.transform.SetParent (sheep.transform);
 
 			for (int i = 0; i < arguments.Length; i++) {
