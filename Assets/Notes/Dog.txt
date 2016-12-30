@@ -1,0 +1,42 @@
+Dog
+- Dog Facade : Monobehaviour : Acts as Context
+	- Initialize
+		- Handles registry
+			- ie BarkRegistry - hold a reference and expose a Bark function
+		- Instantiates below classes
+		- Exposes functions for other modules to interact with the sheep through
+
+- DogData : Data
+	- Mesh, Transform, Animator (Unity Component Access)
+	- DogTargets : Targets, ITargetsLocations Target Position etc.
+	- Velocity
+	- Settings
+		- Walk Speed, Run Speed etc.
+
+- Dog State Manager
+	
+	- enum DogStates CurrentState
+	- CurrentStateHandler : IDogState
+	- DogInputHandler : Subscribes to delegate functions
+
+	- ChangeState (Same as sheep)
+
+	- IDogState
+		- Most dog states wont implement conditions for changing between them
+	
+	- IBarkable
+
+	- DogIsIdle : IDogState, IBarkable
+	- DogIsRunning : IDogState, IBarkable
+	- DogIsJumping : IDogState, IBarkable
+	- DogIsSneaking : IDogState, IBarkable
+
+- Component 
+	- abstract Dog Input Handler : InputHandlerBase
+		- defines delegate functions relevant to the SheepDog
+
+		Implementations
+		- Development Dog Input Handler
+		- Release Dog Input Handler
+
+	- Ground Based Movement : Movement

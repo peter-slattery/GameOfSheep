@@ -1,0 +1,55 @@
+Data
+	- Targets : Targets
+
+Sheep 
+- Sheep Facade : Monobehaviour : Acts as Context
+	- Initialize requests reference to SceneContext
+		- Handles registering Sheep with necessary Registries
+			- ie. FlockRegistry, BarkRegistry
+	- Instantiates all the below functions
+	- Exposes functions for other modules to interact with the sheep through
+	
+
+- SheepData : Data
+	- Mesh, Transform, Animator (Unity Component Access)
+	- SheepTargets : Targets, ITargetsLocations Target Position etc.
+	- Settings
+		- Walk Speed, Run Speed etc.
+
+- Sheep State Manager
+	
+	- enum SheepStates CurrentState;
+	- CurrentStateHandler : ISheepState
+
+	- ChangeState (SheepStates)
+		- Creates new StateHandler.
+		- Calls oldStateHandler.Exit(), newStateHandler.Enter()
+	- Calls CurrentStateHandler.Update when appropriate
+
+	- ISheepState
+		- abstract Enter
+		- abstract Update
+		- abstract Exit
+
+	- SheepIsCalm : ISheepState
+		- Constructor for Dependencies
+		- ISheepState Functions are Public
+		- All other functions are private
+		- This is where AI lives. Internally defines rules for Actions taken while in this state
+		- Subscribes to events on the Facade
+	- SheepIsAnxious : ISheepState
+	- SheepIsIdle : ISheepState
+	- SheepIsFlocking : ISheepState
+	- RamIsFlocking : SheepIsFlocking
+
+- Components
+	- GroundBasedMovement : Movement
+		- ITargetsLocations
+	!-- TEST THIS --!
+		void Update () {
+			dataTargets = GetComponent<Data>().targets;
+			ITargetsLocations targets = (ITargetsLocations)dataTargets;
+			if (targets != null) {
+				Evaluate();
+			}
+		}

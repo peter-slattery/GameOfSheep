@@ -1,0 +1,17 @@
+Scene Context
+- singleton
+- Instantiates and Stores references to Factories. Expose Factories publicly as properties, to lazily instantiate them 
+- Is specfic. ie. If writing a test scene, that scene should have its own SceneContext
+	
+
+Factory<T>
+	- Examples: SheepDogFactory, SheepFactory <SheepFacade>
+	- Create
+	
+Spawn : Monobehaviour
+	- Examples: SheepDogSpawn, SheepSpawn
+	- Initialize
+		- SceneContext.instance.<T>factory
+	- Spawn
+		- calls <T>factory.Create()
+		- think about whether new instances inherit transform

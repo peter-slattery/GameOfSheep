@@ -1,0 +1,27 @@
+Environment
+- Environment Facade : Is Facade and Context
+	- Implements below systems
+	- Exposes functions for interacting with the module from outside
+		- ie. Accessing Data
+		- ie. Composite Functions : BeginStorm = WindSystem.Windy + PrecipitationSystem.Rainy + AtmosphereSystem.Cloudy
+
+- Wind System
+	- Wind Facade
+		- Registers System with the WindStateRegistry
+	- Wind Data
+		- Settings and Prefabs
+	- Wind State Manager
+		- Handles logic for wind
+
+	- WindStateRegistry
+		- Lazily Instantiated in the Environment Context
+		- Has reference to Wind Data
+		- Exposes functions for accessing without modifying the data
+ 
+- Foliage System
+	- Foliage Facde
+		- Stores a reference to the WindStateRegistry
+	- Foliage Data
+	- Foliage State Manager
+		- Handles logic for foliage
+		- Handles application of wind to foliage

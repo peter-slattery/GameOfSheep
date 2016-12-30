@@ -1,0 +1,17 @@
+Registry
+	Exposes hooks/delegates which can be registered to
+	Exposes public functions which are how hooks/delegates get called
+
+BarkRegistry
+	Exposes functionality to Bark()
+	Allows other entities to register to receive a BarkEvent.
+
+	public delegate void BarkEvent (Vector3 position);
+	public BarkEvent OnBark;
+
+	public Bark (Vector3 position) {
+		if (OnBark != null) {
+			OnBark (position);
+		}
+	}
+
