@@ -36,12 +36,53 @@ We are using [Zenject](https://github.com/modesttree/Zenject) to handle dependen
 
 <a name="conventions"></a>
 ## Conventions
+**IOC Context**<br>
 
-**Per Class Settings**<br>
+**Class Factories**<br>
+Any class which needs to be instantiated at runtime should define its own factory class in itself.
+
+**Facade, Model, Controller Design Pattern** <br>
+In attempting to merge Unity's native Entity-Controller methodology, with a Model-View-Controller architecture which follows Dependency Injection, and Inversion of Control, we have arrived at what we are calling the Facade-Data-Controller Pattern.
+
+Each Game System is composed of a Facade, a Model and a Controller.
+
+***Facade:*** Facades act as both the public face of a Game System, and as an IOC Context. Facades instantiate and inject dependencies into the classes of the given system, thus acting as the Systems IOC Context.
+
+Facades also act as a public interface for the System as a whole, following the Facade design pattern. Because Facade's act as the connection between the System and the larger game context, we are using them to represent the system as a whole.<br> 
+*For Example:* a Factory called SheepDogFactory is actually responsible for instantiating the SheepDogFacade on a game object, either empty or from a prefab, injecting dependencies into the Facade, and causing the Facade to Initialize the rest of the system.
+
+***Model:*** Model classes simply provide references to various data relevant to the internal workings of the System. 
+- This data can be accessed and modified either directly by other classes in the System, or through accessors in the Facade for extra-System references.<p>
+*Model Targets:* All Models which extend from ModelBase contain a field for an instance of a class inheriting from abstract class Targets. Children of class Targets store additional data which should be set within the System to be acted on by Components (see below). Components attached to a System may request access to the System's Model's Targets instance, cast it to an interface defined by the Component, and use the data relevant to the Component. This decouples the function of the System from reusable, auxilliary functions.<br>
+- *For Example:* SheepDogModel contains an instance of SheepDogTarget which implements IMovable. The component GroundedMovement (which extends class Movement) requests SheepDogFacade.Targets() as IMovable. If the cast succeeds, GroundBasedMovement acts on the contained data, returning if the cast fails.
+
+***Controller:*** The Controller of a given System implements the logic of the System. It acts on its Model and any dependencies to carry out the function of the System. In the case of Game Actors, like Sheep, and Wolves, the Controller may be a State Manager. In the case of more general systems like Wind, it simply executes the functionality of the System itself.
+
+**Registries** <br>
+Registries act as the binding between Systems. A Registry should not be critical to the functionality of a System. Instead, if present it should augment the execution of that System.<p>
+Any given Registry has two requirements:
+
+1. Expose hooks as delegate methods which can be subscribed to.
+2. Expose public functions through which to call delegates.
+
+*For Example:* The Sheep System should function fully by itself. However, it can request a reference to the Bark Registry from the Scene Context. If it is not null, the Sheep Facade subscribes to the Bark Registry's OnBark delegate method. On the other end, the SheepDog can request and store a reference to the Bark Registry. When the SheepDog System receives the Bark command from some Input Handler, it handles the state change, audio and animations internally. If a reference to the Bark Registry exists, it calls the Bark Registry's Bark function, which in turn calls OnBark for all subscribed Systems.
+
+**Components** <br>
+
+**Spawns** <br>
+
+**Class Settings**<br>
 Any class which has data that might be desirable to have hand-edited in editor should define a Serializable class called Settings within it. It should request an instance of its Settings class at [Inject], and have a default values fallback in the event that one is not provided.
 
-**Per Class Factories**<br>
-Any class which needs to be instantiated at runtime should define its own factory class in itself.
+~~~~
+class DogData {
+	...
+	[System.Serializable]
+	public class Settings {
+		... Settings Here ...
+	}
+}
+~~~~
 
 <a name="project_structure"></a>
 ## Project Structure
