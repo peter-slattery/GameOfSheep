@@ -7,13 +7,21 @@ using GameOfSheep.SystemBase;
 namespace GameOfSheep.Sheep {
 	public class SheepSpawn : SpawnBase<SheepFacade>{
 
+		bool hasSpawned = false;
+
 		public override void Construct () {
 			base.Construct ();
-			Spawn ();
 		}
 
-		public void Spawn () {
+		void Update () {
+			if (!hasSpawned) {
+				hasSpawned = Spawn ();
+			}
+		}
+
+		public bool Spawn () {
 			SheepFacade facade = base.Spawn (transform);
+			return facade != null;
 		}
 	}
 }

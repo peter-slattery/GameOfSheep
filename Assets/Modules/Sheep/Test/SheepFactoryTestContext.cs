@@ -21,8 +21,11 @@ namespace GameOfSheep.Sheep.Test {
 
 		public override void Construct () {
 			base.Construct ();
+
 			SheepFactory sheepFactory = BindAndGetFactory <SheepFacade, SheepFactory>() as SheepFactory;
 			sheepFactory.Construct (m_SheepSystemSettings);
+
+			Ready = true;
 		}
 	}
 }

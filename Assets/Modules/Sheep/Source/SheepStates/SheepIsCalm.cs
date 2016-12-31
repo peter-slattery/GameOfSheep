@@ -2,8 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using GameOfSheep.SystemBase;
+
 namespace GameOfSheep.Sheep {
-	public class SheepIsCalm : ISheepStateHandler {
+	
+	public class SheepIsCalm : StateHandlerBase {
+		/*
+		[System.Serializable]
+		public class Settings {
+			public float TimeBeforeIdle = 4;
+		}
+
 
 		private SheepController m_Controller;
 		private SheepIsCalm.Settings m_Settings;
@@ -22,30 +31,24 @@ namespace GameOfSheep.Sheep {
 			}
 		}
 
-		public void OnEnter () {
-			TimeInState = 0;
+		*/
+		public override void OnEnter (StateHandlerBase nextState) {
+			//TimeInState = 0;
 		}
 
-		public void OnEnter (ISheepStateHandler nextState) {
-			OnEnter ();
-		}
-
-		public void OnUpdate () {
+		public override void OnUpdate () {
+			/*
 			// TODO: Replace with real logic
 			TimeInState += Time.deltaTime;
 
 			if (TimeInState >= m_Settings.TimeBeforeIdle && m_Controller != null) {
 				m_Controller.ChangeState (SheepController.SheepStates.IS_IDLE);
 			}
+			*/
 		}
 
-		public void OnExit (ISheepStateHandler nextState) {
+		public override void OnExit (StateHandlerBase nextState) {
 
-		}
-
-		[System.Serializable]
-		public class Settings {
-			public float TimeBeforeIdle = 4;
 		}
 	}
 }

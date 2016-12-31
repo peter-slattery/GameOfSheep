@@ -12,6 +12,24 @@ namespace GameOfSheep.SystemBase {
 		// This is where instances of Factories are store, in relation to the type of the facade they create
 		private Dictionary<string, FactoryBase> m_FactoryInstances;
 
+		public delegate void IOCContextEvent ();
+		public IOCContextEvent OnContextReady;
+
+
+		private bool m_ContextIsReady = false;
+		public bool Ready { 
+			get { 
+				return m_ContextIsReady; 
+			}
+
+			protected set {
+				m_ContextIsReady = value;
+				if (OnContextReady != null) {
+					OnContextReady ();
+				}
+			}
+		}
+
 		public virtual void Construct () {
 			m_BoundFactories = new Dictionary<string, string> ();
 			m_FactoryInstances = new Dictionary<string, FactoryBase> ();

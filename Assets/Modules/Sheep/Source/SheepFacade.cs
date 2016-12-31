@@ -12,9 +12,11 @@ namespace GameOfSheep.Sheep {
 
 		private SheepModel m_Model;
 		private SheepController m_Controller;
-		private SheepStateFactory m_StateFactory;
 
 		private SheepSystemSettings m_Settings;
+
+		public SheepModel Model { get { return m_Model; } }
+		public SheepController Controller { get { return m_Controller; } }
 
 		public TargetsBase Targets { get { return m_Model.Targets; } }
 
@@ -25,22 +27,14 @@ namespace GameOfSheep.Sheep {
 			m_Settings = settings;
 			
 			m_Model = new SheepModel (GetComponent<Transform>());
-			m_StateFactory = new SheepStateFactory (m_Settings);
-			m_Controller = new SheepController (m_StateFactory, m_Model);
+			m_Controller = new SheepController (this, m_Settings, m_Model);
+			m_Controller.Initialize();
 
 			m_Constructed = true;
 		}
 
 		public void Initialize () {
 
-		}
-
-		void Awake () {
-			Construct ();
-		}
-
-		void Start () {
-			Initialize ();
 		}
 
 		void Update () {
