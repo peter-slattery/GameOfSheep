@@ -10,18 +10,18 @@ namespace GameOfSheep.Sheep {
 	public class SheepIsAnxious : StateHandlerBase {
 
 		[System.Serializable]
-		public class Settings : StateHandlerBase.Settings {
+		public new class Settings : StateHandlerBase.Settings {
 			public float TimeBeforeCalm = 5.0f;
 			public float AxiousSpeed = 2.0f;
 		}
 
-		class Dependencies : StateHandlerBase.Dependencies {
+		new class Dependencies : StateHandlerBase.Dependencies {
 			public SheepController Controller;
 			public SheepModel Model;
 			public ITargetsMovable Movable;
 		}
 
-		class CurrentFields : StateHandlerBase.CurrentFields {
+		new class CurrentFields : StateHandlerBase.CurrentFields {
 			public float TimeInState;
 			public Vector3 StateGoal;
 		}

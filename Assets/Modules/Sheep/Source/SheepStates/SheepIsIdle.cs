@@ -6,6 +6,12 @@ using GameOfSheep.SystemBase;
 
 namespace GameOfSheep.Sheep {
 	public class SheepIsIdle : StateHandlerBase {
+
+		[System.Serializable]
+		public new class Settings : StateHandlerBase.Settings{
+			public float TimeBeforeAnxious = 4;
+		}
+
 		/*
 		private SheepController m_Controller;
 		private SheepIsIdle.Settings m_Settings;
@@ -44,9 +50,6 @@ namespace GameOfSheep.Sheep {
 
 		}
 
-		[System.Serializable]
-		public class Settings : StateHandlerBase.Settings{
-			public float TimeBeforeAnxious = 4;
-		}
+
 	}
 }
