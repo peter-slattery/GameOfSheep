@@ -30,6 +30,8 @@ namespace GameOfSheep.Sheep {
 			}
 
 			sheepVisuals.transform.SetParent (sheep.transform);
+			sheepVisuals.transform.localPosition = Vector3.zero;
+			sheepVisuals.transform.localRotation = Quaternion.Euler (0, 90, 0);
 
 			for (int i = 0; i < arguments.Length; i++) {
 				if (arguments [i] is Transform) {
@@ -45,6 +47,8 @@ namespace GameOfSheep.Sheep {
 
 			GroundBasedMovement gbm = sheep.AddComponent<GroundBasedMovement> ();
 			gbm.Construct ();
+			FaceTowardsTarget ftt = sheep.AddComponent<FaceTowardsTarget> ();
+			ftt.Construct ();
 
 			return facade;
 		}

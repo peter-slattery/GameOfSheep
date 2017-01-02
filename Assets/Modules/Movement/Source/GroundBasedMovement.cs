@@ -45,6 +45,7 @@ namespace GameOfSheep.Movement {
 
 				targetEvaluated = RaycastToGround (targetEvaluated);
 
+				m_Targets.LastFramePosition = transform.position;
 				transform.position = targetEvaluated;
 				m_Targets.MovementTarget = targetEvaluated;
 			}
@@ -77,8 +78,8 @@ namespace GameOfSheep.Movement {
 			Ray castAgainstGround = new Ray (target + Vector3.up * .1f, Vector3.down);
 			RaycastHit hit;
 
-			Debug.DrawRay (castAgainstGround.origin, castAgainstGround.direction * 5, Color.green, 5);
 			if (Physics.Raycast (castAgainstGround, out hit)) {
+				Debug.DrawRay (castAgainstGround.origin, castAgainstGround.direction * Vector3.Distance(castAgainstGround.origin, hit.point), Color.green, 5);
 				return hit.point;
 			}
 			return target;

@@ -26,12 +26,12 @@ namespace GameOfSheep.Sheep {
 			if (m_Potential.States != null &&
 				m_Potential.States.Count > 0) 
 			{
-				RequestChangeState (m_Potential.States [0]);
+				RequestChangeState (m_Potential.States [0].GetStateHandlerType());
 			}
 		}
 
 		public override void OnUpdate () {
-			if(m_CurrentStateHandler)
+			if(m_CurrentStateHandler != null)
 				m_CurrentStateHandler.OnUpdate ();
 		}
 	}

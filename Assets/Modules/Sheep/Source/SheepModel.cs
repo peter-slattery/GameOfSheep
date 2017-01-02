@@ -9,6 +9,7 @@ namespace GameOfSheep.Sheep {
 	public class SheepModel : ModelBase {
 
 		private Transform m_SheepTransform;
+		private Animator m_Animator;
 
 		public SheepModel (
 			Transform sheepTransform
@@ -28,10 +29,21 @@ namespace GameOfSheep.Sheep {
 				return Vector3.zero;
 			}
 		}
+
+		public Animator GetAnimator () {
+			if (m_Animator == null) {
+				m_Animator = m_SheepTransform.gameObject.GetComponentInChildren<Animator> ();
+			}
+			return m_Animator;
+		}
 	}
 
 	public class SheepTargets : TargetsBase, ITargetsMovable {
 		public Vector3 MovementTarget { 
+			get;
+			set;
+		}
+		public Vector3 LastFramePosition {
 			get;
 			set;
 		}

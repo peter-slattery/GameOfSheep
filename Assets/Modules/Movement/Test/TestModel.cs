@@ -17,5 +17,10 @@ namespace GameOfSheep.Movement {
 			get;
 			set;
 		}
+
+		public Vector3 LastFramePosition {
+			get;
+			set;
+		}
 	}
 }

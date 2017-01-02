@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: BasicTestSystemSettings
   m_EditorClassIdentifier: 
   FactorySettings:
-    SheepVisualPrefab: {fileID: 1716148190678012, guid: e04d35da480dc47669b746074037db4d,
+    SheepVisualPrefab: {fileID: 1807164707398464, guid: 66b6d95561aed424dbb3c10450188651,
       type: 2}
   PotentialStates:
     States:
-    - {fileID: 11400000, guid: 6b6b28901c9e54c78bda505b658f3320, type: 2}
+    - {fileID: 11400000, guid: f47b1f6cd18a47b4887d0d193ceb12b9, type: 2}
+    - {fileID: 11400000, guid: 1fc3d03f0f081fb4e92d7939bc84bdaf, type: 2}

@@ -8,6 +8,7 @@ namespace GameOfSheep.Movement {
 	
 	public interface ITargetsMovable {
 		Vector3 MovementTarget { get; set; }
+		Vector3 LastFramePosition { get; set; }
 	}
 
 	public class Movement : MonoBehaviour {

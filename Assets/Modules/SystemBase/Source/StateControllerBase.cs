@@ -5,7 +5,7 @@ using UnityEngine;
 namespace GameOfSheep.SystemBase {
 	[System.Serializable]
 	public class PotentialStatesContainer {
-		public List<StateHandlerBase> States;
+		public List<StateHandlerCustomizationBase> States;
 	}
 
 	public class StateControllerBase {
@@ -28,60 +28,61 @@ namespace GameOfSheep.SystemBase {
 			if (m_CurrentStateHandler != null && m_CurrentStateHandler is T)
 				return;
 
-			if (!CheckHasPotentialState <T>())
+			int stateIndex = CheckHasPotentialState <T> ();
+			if (stateIndex == -1)
 				return;
 
 			StateHandlerBase lastState = m_CurrentStateHandler;
-			m_CurrentStateHandler = ScriptableObject.CreateInstance<T>() as StateHandlerBase;
-			m_CurrentStateHandler.Construct(m_Facade);
+			m_CurrentStateHandler = m_Potential.States[stateIndex].Construct(m_Facade);
 
-			if (lastState) {
+			if (lastState != null) {
 				lastState.OnExit (m_CurrentStateHandler);
 			}
 
 			m_CurrentStateHandler.OnEnter (lastState);
 		}
 
-		public void RequestChangeState (StateHandlerBase state) {
-			if (m_CurrentStateHandler != null && m_CurrentStateHandler.GetType() == state.GetType ())
+		public void RequestChangeState (System.Type state) {
+			if (m_CurrentStateHandler != null && m_CurrentStateHandler.GetType() == state)
 				return;
 
-			if (!CheckHasPotentialState(state))
+			int stateIndex = CheckHasPotentialState (state);
+			if (stateIndex == -1)
 				return;
-
-			StateHandlerBase lastState = m_CurrentStateHandler;
-			m_CurrentStateHandler = Object.Instantiate(state) as StateHandlerBase;
-			m_CurrentStateHandler.Construct (m_Facade);
-
-			if (lastState) {
-				lastState.OnExit (m_CurrentStateHandler);
-			}
-
-			m_CurrentStateHandler.OnEnter (lastState);
-		}
-
-		bool CheckHasPotentialState <T> () {
-			if (m_Potential != null)
-				return false;
 			
-			foreach (StateHandlerBase pState in m_Potential.States) {
-				if (pState is T) {
-					return true;
-				}
+
+			StateHandlerBase lastState = m_CurrentStateHandler;
+			m_CurrentStateHandler = m_Potential.States [stateIndex].Construct (m_Facade);
+
+			if (lastState != null) {
+				lastState.OnExit (m_CurrentStateHandler);
 			}
-			return false;
+
+			m_CurrentStateHandler.OnEnter (lastState);
 		}
 
-		bool CheckHasPotentialState (StateHandlerBase state) {
+		int CheckHasPotentialState <T> () {
 			if (m_Potential == null)
-				return false;
+				return -1;
 			
-			foreach (StateHandlerBase pState in m_Potential.States) {
-				if (pState.GetType() == state.GetType()) {
-					return true;
+			for (int i=0; i<m_Potential.States.Count; i++){
+				if (m_Potential.States[i].GetStateHandlerType() == typeof(T)) {
+					return i;
 				}
 			}
-			return false;
+			return -1;
+		}
+
+		int CheckHasPotentialState (System.Type state) {
+			if (m_Potential == null)
+				return -1;
+			
+			for (int i=0; i<m_Potential.States.Count; i++){
+				if (m_Potential.States[i].GetStateHandlerType() == state) {
+					return i;
+				}
+			}
+			return -1;
 		}
 
 		public virtual void OnUpdate() {}

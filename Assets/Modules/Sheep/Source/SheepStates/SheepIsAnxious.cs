@@ -7,6 +7,19 @@ using GameOfSheep.Movement;
 
 namespace GameOfSheep.Sheep {
 	[CreateAssetMenu (menuName = "Sheep/States/SheepIsAnxious")]
+	public class SheepIsAnxiousCustomization : StateHandlerCustomizationBase {
+
+		public SheepIsAnxious.Settings Settings;
+
+		public override System.Type GetStateHandlerType () {
+			return typeof(SheepIsAnxious);
+		}
+
+		public override StateHandlerBase Construct (IFacadeBase facade) {
+			return new SheepIsAnxious (facade, Settings);
+		}
+	}
+
 	public class SheepIsAnxious : StateHandlerBase {
 
 		[System.Serializable]
@@ -32,11 +45,13 @@ namespace GameOfSheep.Sheep {
 		private SheepIsAnxious.Dependencies m_Dependencies;
 		private SheepIsAnxious.CurrentFields m_CurrentFields;
 
-		public override void Construct (
-			IFacadeBase facade
+		public SheepIsAnxious(
+			IFacadeBase facade,
+			SheepIsAnxious.Settings settings
+		) : base (
+			facade
 		) {
-			base.Construct (facade);
-
+			m_Settings = settings;
 			m_Dependencies = new SheepIsAnxious.Dependencies ();
 			m_CurrentFields = new SheepIsAnxious.CurrentFields ();
 
@@ -55,7 +70,11 @@ namespace GameOfSheep.Sheep {
 			if (m_Dependencies.Model.Targets is ITargetsMovable) {
 				Vector2 inCircle = 10 * Random.insideUnitCircle;
 				m_CurrentFields.StateGoal = new Vector3 (inCircle.x, 0, inCircle.y);
+
+				m_Dependencies.Model.GetAnimator ().SetFloat ("Moving", 1.0f);
 			}
+
+			Debug.Log ("Entering Anxious");
 		}
 
 		public override void OnUpdate () {
