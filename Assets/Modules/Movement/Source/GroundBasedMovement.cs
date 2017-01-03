@@ -39,7 +39,6 @@ namespace GameOfSheep.Movement {
 				bool collided = RaycastToTarget (out targetEvaluated, out hitOnPathToTarget);
 
 				if (collided) {
-					Debug.Log ("Collided");
 					targetEvaluated = EvaluateForSlope (m_Targets.MovementTarget, hitOnPathToTarget);
 				}
 

@@ -16,5 +16,5 @@ MonoBehaviour:
       type: 2}
   PotentialStates:
     States:
-    - {fileID: 11400000, guid: 4b97df4614e7e364f96d51f9137b9495, type: 2}
-    - {fileID: 11400000, guid: 34e08bf3cc23fe4408e52181df5556a0, type: 2}
+    - {fileID: 11400000, guid: 5f423161f0e21e843bcbcf69dbaf29bc, type: 2}
+    - {fileID: 11400000, guid: 08769f5a347b4cf4f8c7680808e0be6e, type: 2}
