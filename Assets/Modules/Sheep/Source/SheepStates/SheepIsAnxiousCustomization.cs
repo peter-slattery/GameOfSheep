@@ -73,8 +73,6 @@ namespace GameOfSheep.Sheep {
 
 				m_Dependencies.Model.GetAnimator ().SetFloat ("Moving", 1.0f);
 			}
-
-			Debug.Log ("Entering Anxious");
 		}
 
 		public override void OnUpdate () {
@@ -86,6 +84,10 @@ namespace GameOfSheep.Sheep {
 			}
 
 			SetMovementTarget ();
+
+			if (Vector3.Distance (m_CurrentFields.StateGoal, m_Dependencies.Model.Position) < .1f) {
+				m_Dependencies.Model.GetAnimator ().SetFloat ("Moving", 0.0f);
+			}
 		}
 
 		public override void OnExit (StateHandlerBase nextState) {

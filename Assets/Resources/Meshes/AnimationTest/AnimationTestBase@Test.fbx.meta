@@ -1,67 +1,26 @@
 fileFormatVersion: 2
-guid: 084e88cb5b1a57b40970c5950c158fcf
-timeCreated: 1483404976
+guid: d28776e6942abf34587250a842915910
+timeCreated: 1483407444
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: sheep
-    100004: sheep_head_base_jt
-    100006: sheep_head_tip_jt
-    100008: sheep_l_back_leg_base_jt
-    100010: sheep_l_back_leg_foot_jt
-    100012: sheep_l_back_leg_knee_jt
-    100014: sheep_l_ear_base_jt
-    100016: sheep_l_ear_bend_jt
-    100018: sheep_l_ear_tip_jt
-    100020: sheep_l_front_leg_base_jt
-    100022: sheep_l_front_leg_foot_jt
-    100024: sheep_l_front_leg_knee_jt
-    100026: sheep_r_back_leg_base_jt
-    100028: sheep_r_back_leg_foot_jt
-    100030: sheep_r_back_leg_knee_jt
-    100032: sheep_r_ear_base_jt
-    100034: sheep_r_ear_bend_jt
-    100036: sheep_r_ear_tip_jt
-    100038: sheep_r_front_leg_base_jt
-    100040: sheep_r_front_leg_foot_jt
-    100042: sheep_r_front_leg_knee_jt
-    100044: sheep_root_jt
-    100046: sheep_shoulder_jt
-    100048: sheep_spine_jt
-    100050: sheep_tail_base_jt
-    100052: sheep_tail_tip_jt
+    100002: AnimationTestBase_joint1
+    100004: AnimationTestBase_joint2
+    100006: AnimationTestBase_joint3
+    100008: joint1
+    100010: joint2
+    100012: joint3
     400000: //RootNode
-    400002: sheep
-    400004: sheep_head_base_jt
-    400006: sheep_head_tip_jt
-    400008: sheep_l_back_leg_base_jt
-    400010: sheep_l_back_leg_foot_jt
-    400012: sheep_l_back_leg_knee_jt
-    400014: sheep_l_ear_base_jt
-    400016: sheep_l_ear_bend_jt
-    400018: sheep_l_ear_tip_jt
-    400020: sheep_l_front_leg_base_jt
-    400022: sheep_l_front_leg_foot_jt
-    400024: sheep_l_front_leg_knee_jt
-    400026: sheep_r_back_leg_base_jt
-    400028: sheep_r_back_leg_foot_jt
-    400030: sheep_r_back_leg_knee_jt
-    400032: sheep_r_ear_base_jt
-    400034: sheep_r_ear_bend_jt
-    400036: sheep_r_ear_tip_jt
-    400038: sheep_r_front_leg_base_jt
-    400040: sheep_r_front_leg_foot_jt
-    400042: sheep_r_front_leg_knee_jt
-    400044: sheep_root_jt
-    400046: sheep_shoulder_jt
-    400048: sheep_spine_jt
-    400050: sheep_tail_base_jt
-    400052: sheep_tail_tip_jt
-    4300000: sheep
+    400002: AnimationTestBase_joint1
+    400004: AnimationTestBase_joint2
+    400006: AnimationTestBase_joint3
+    400008: joint1
+    400010: joint2
+    400012: joint3
+    7400000: Take 001
     9500000: //RootNode
-    13700000: sheep
   materials:
     importMaterials: 1
     materialName: 0

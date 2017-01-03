@@ -68,8 +68,6 @@ namespace GameOfSheep.Sheep {
 			m_CurrentFields.TimeInState = 0;
 
 			m_Dependencies.Model.GetAnimator ().SetFloat ("Moving", 0.0f);
-
-			Debug.Log ("Entering Calm");
 		}
 
 		public override void OnUpdate () {

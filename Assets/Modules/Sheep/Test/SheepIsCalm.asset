@@ -8,8 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 9e424c6d6315f44fc95d0e02f3cb5865, type: 3}
   m_Name: SheepIsCalm
-  m_EditorClassIdentifier: Assembly-CSharp:GameOfSheep.Sheep:SheepIsCalmCustomization
+  m_EditorClassIdentifier: 
   Settings:
     TimeBeforeIdle: 4
